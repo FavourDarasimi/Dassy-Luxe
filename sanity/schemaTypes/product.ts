@@ -27,5 +27,20 @@ export const product = defineType({
         hotspot: true,
       },
     }),
+
+    defineField({
+      name: "category",
+      title: "Category",
+      type: "reference",
+      to: [{ type: "category" }],
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: "available",
+      title: "Available",
+      type: "boolean",
+      initialValue: true,
+    }),
   ],
 });
