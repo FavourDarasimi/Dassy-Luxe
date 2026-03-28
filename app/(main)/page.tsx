@@ -8,7 +8,7 @@ import WhatsAppCTA from "@/components/home/WhatsAppCTA";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full bg-white">
+    <div className="flex flex-col w-full ">
       <Hero />
      
       <FeaturedProducts />

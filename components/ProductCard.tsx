@@ -24,7 +24,7 @@ export default function ProductCard({ product }: { product: Product }) {
             src={postImageUrl(product.image) || ""}
             alt={product.name}
             fill
-            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400">No image</div>

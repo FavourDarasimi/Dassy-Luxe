@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import {FaWhatsapp} from "react-icons/fa"
+import {FaWhatsapp,FaShoppingCart} from "react-icons/fa"
+import { ShoppingCart } from "lucide-react";
 
 
 export default function Hero() {
@@ -38,8 +39,9 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center gap-4 justify-center w-full sm:w-auto">
           <Link 
             href="/shop" 
-            className="w-full sm:w-auto px-8 py-4 bg-white text-gray-900 font-bold rounded-full hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] text-center"
+            className="w-full sm:w-auto flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-bold rounded-full hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] text-center"
           >
+            <ShoppingCart className="w-6 h-6 mr-2 "/>
             Shop Collection
           </Link>
           <a 
@@ -48,7 +50,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="w-full sm:w-auto flex items-center justify-center px-8 py-4 bg-[#25D366] hover:bg-[#1ebd5a] text-white font-bold rounded-full hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(37,211,102,0.4)]"
           >
-            <FaWhatsapp className="w-5 h-5 mr-2 "/>
+            <FaWhatsapp className="w-6 h-6 mr-2 "/>
             Order on WhatsApp
           </a>
         </div>

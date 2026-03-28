@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {FaWhatsapp} from "react-icons/fa"
+import icon from "@/app/(main)/icon.png"
 
 
 type Category = { _id: string; name: string };
@@ -31,7 +33,15 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
         <div className="flex justify-between items-center md:h-18 h-16">
           
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center">
+          <Link href="/" className="flex-shrink-0 flex items-center ">
+            <Image 
+              src={icon}
+              alt="Dassy Luxe Icon" 
+              width={80} 
+              height={80} 
+              className="object-contain -mr-3 md:-mr-4"
+              priority
+            />
             <h1 className="md:text-2xl text-xl font-semibold tracking-tight text-gray-900 transition-colors duration-300">
               Dassy<span className="text-gray-500">Luxe</span>
             </h1>
@@ -201,7 +211,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="mt-4 inline-flex w-full items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-black hover:bg-gray-800 shadow-md transition-colors"
+            className="mt-4 inline-flex w-full items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-[#25D366] hover:bg-[#1ebd5a] shadow-md transition-colors"
           >
                       <FaWhatsapp className="w-6 h-6 mr-3 "/>
             
