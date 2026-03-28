@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import {FaWhatsapp} from "react-icons/fa"
+
 
 type Category = { _id: string; name: string };
 
@@ -26,12 +28,12 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center md:h-18 h-16">
           
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center">
-            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 transition-colors duration-300">
-              Dassy<span className="text-[#F97316]">Luxe</span>
+            <h1 className="md:text-2xl text-xl font-semibold tracking-tight text-gray-900 transition-colors duration-300">
+              Dassy<span className="text-gray-500">Luxe</span>
             </h1>
           </Link>
 
@@ -39,13 +41,13 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
-              className="text-gray-700 hover:text-[#F97316] font-medium transition-colors duration-200"
+              className="text-gray-700 hover:text-black font-medium transition-colors duration-200"
             >
               Home
             </Link>
             <Link
               href="/shop"
-              className="text-gray-700 hover:text-[#F97316] font-medium transition-colors duration-200"
+              className="text-gray-700 hover:text-black font-medium transition-colors duration-200"
             >
               Shop
             </Link>
@@ -53,7 +55,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
             {/* Category Dropdown */}
             <div className="relative group">
               <button
-                className="flex items-center text-gray-700 hover:text-[#F97316] font-medium transition-colors duration-200 focus:outline-none"
+                className="flex items-center text-gray-700 hover:text-black font-medium transition-colors duration-200 focus:outline-none"
                 aria-expanded="false"
               >
                 Categories
@@ -66,7 +68,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
                     <Link
                       key={cat._id}
                       href={`/shop?category=${encodeURIComponent(cat.name)}`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#F97316] transition-colors"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors"
                       role="menuitem"
                     >
                       {cat.name}
@@ -83,9 +85,9 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-56 xl:w-64 pl-4 pr-10 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                className="w-56 xl:w-64 pl-4 pr-10 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
               />
-              <button type="submit" className="absolute right-3 text-gray-400 hover:text-[#F97316] transition-colors">
+              <button type="submit" className="absolute right-3 text-gray-400 hover:text-black transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -95,12 +97,10 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-full text-white bg-[#F97316] hover:bg-[#EA580C] shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-full text-white bg-[#25D366] hover:bg-[#1ebd5a] shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
-              </svg>
+                        <FaWhatsapp className="w-6 h-6 mr-3 "/>
+              
               Chat on WhatsApp
             </a>
           </div>
@@ -110,7 +110,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#F97316] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#F97316] transition-colors"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black transition-colors"
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -133,7 +133,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
       <div
         className={`md:hidden transition-all duration-300 ease-in-out ${
           isMobileMenuOpen
-            ? "max-h-72 opacity-100 visible"
+            ? "max-h-fit opacity-100 visible"
             : "max-h-0 opacity-0 invisible"
         } overflow-scroll bg-white border-t border-gray-100 shadow-lg absolute w-full`}
         id="mobile-menu"
@@ -146,9 +146,9 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-md text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#F97316] transition-all"
+              className="w-full pl-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-md text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-black transition-all"
             />
-            <button type="submit" className="absolute right-3 top-[50%] transform -translate-y-1/2 text-gray-400 hover:text-[#F97316]">
+            <button type="submit" className="absolute right-3 top-[50%] transform -translate-y-1/2 text-gray-400 hover:text-black">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -157,14 +157,14 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
           <Link
             href="/"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="block text-center w-full px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-[#F97316] hover:bg-gray-50 transition-colors"
+            className="block text-center w-full px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-colors"
           >
             Home
           </Link>
           <Link
             href="/shop"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="block text-center w-full px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-[#F97316] hover:bg-gray-50 transition-colors"
+            className="block text-center w-full px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-colors"
           >
             Shop
           </Link>
@@ -173,7 +173,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
           <div className="w-full">
             <button
               onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-              className="flex justify-center items-center w-full px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-[#F97316] hover:bg-gray-50 transition-colors"
+              className="flex justify-center items-center w-full px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-colors"
             >
               Categories
               <svg className={`ml-2 w-4 h-4 transition-transform duration-200 ${isCategoryOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
@@ -188,7 +188,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
                       setIsMobileMenuOpen(false);
                       setIsCategoryOpen(false);
                     }}
-                    className="block w-full text-center px-4 py-2 text-sm text-gray-600 hover:text-[#F97316] hover:bg-gray-100 transition-colors"
+                    className="block w-full text-center px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-100 transition-colors"
                   >
                     {cat.name}
                   </Link>
@@ -201,12 +201,10 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="mt-4 inline-flex w-full items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-[#F97316] hover:bg-[#EA580C] shadow-md transition-colors"
+            className="mt-4 inline-flex w-full items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-black hover:bg-gray-800 shadow-md transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-              <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-              <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
-            </svg>
+                      <FaWhatsapp className="w-6 h-6 mr-3 "/>
+            
             Chat on WhatsApp
           </a>
         </div>

@@ -18,7 +18,7 @@ export default function Categories() {
             <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Shop by Category</h2>
             <p className="mt-2 text-gray-500">Find exactly what you are looking for.</p>
           </div>
-          <Link href="/shop" className="hidden md:inline-flex text-[#F97316] font-semibold hover:text-[#EA580C] transition-colors items-center">
+          <Link href="/shop" className="hidden md:inline-flex text-black font-semibold hover:text-gray-700 transition-colors items-center">
             View All Categories
             <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
           </Link>
@@ -42,7 +42,7 @@ export default function Categories() {
         </div>
         
         <div className="mt-6 md:hidden">
-          <Link href="/shop" className="inline-flex w-full items-center justify-center text-[#F97316] font-semibold bg-orange-50 py-3 rounded-md hover:bg-orange-100 transition-colors">
+          <Link href="/shop" className="inline-flex w-full items-center justify-center text-white font-semibold bg-black py-3 rounded-md hover:bg-gray-800 transition-colors">
             View All Categories
           </Link>
         </div>
