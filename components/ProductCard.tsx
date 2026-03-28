@@ -31,7 +31,7 @@ export default function ProductCard({ product }: { product: Product }) {
         )}
         
         {/* In Stock Badge */}
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white/95 backdrop-blur-sm px-1.5 py-0.5 sm:px-2.5 sm:py-1 flex items-center rounded text-[8px] sm:text-[10px] font-bold text-emerald-600 tracking-wide uppercase shadow-sm border border-white/50">
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white/95 backdrop-blur-sm px-1.5 py-0.5 sm:px-3 sm:py-1 flex items-center rounded text-[9px] sm:text-xs font-bold text-emerald-600 tracking-wide uppercase shadow-sm border border-white/50">
           <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-500 mr-1 sm:mr-1.5 animate-pulse"></span>
           In stock
         </div>
@@ -40,11 +40,11 @@ export default function ProductCard({ product }: { product: Product }) {
       {/* Content */}
       <div className="p-3 sm:p-5 flex flex-col flex-grow">
         {/* Category Name */}
-        <span className="text-[8px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1 block">
+        <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 block">
           {product.category?.name || "Uncategorized"}
         </span>
         
-        <h3 className="font-bold text-gray-900 text-[12px] sm:text-[15px] truncate mb-1">
+        <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate mb-1">
           {product.name}
         </h3>
         
@@ -59,7 +59,7 @@ export default function ProductCard({ product }: { product: Product }) {
         
         {/* Price & Order Button Container */}
         <div className="flex items-center justify-between mt-auto pt-3 sm:pt-4 border-t border-gray-100 gap-1">
-          <span className="font-extrabold text-gray-900 text-[12px] sm:text-[16px] truncate">
+          <span className="font-extrabold text-gray-900 text-sm sm:text-lg truncate">
             ₦{product.price?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </span>
           
@@ -68,7 +68,7 @@ export default function ProductCard({ product }: { product: Product }) {
             href={`https://wa.me/2349027458696?text=${encodeURIComponent(`Hello DassyLuxe! I'm interested in ordering the ${product.name}.`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center px-2 py-1.5 sm:px-4 sm:py-[9px] bg-[#25D366] hover:bg-[#1ebd5a] text-white text-[10px] sm:text-[12px] font-bold rounded-md transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 shrink-0"
+            className="flex items-center justify-center px-2 py-1.5 sm:px-4 sm:py-2 bg-[#25D366] hover:bg-[#1ebd5a] text-white text-[11px] sm:text-sm font-bold rounded-md transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 shrink-0"
           >
             <FaWhatsapp className="w-6 h-6 mr-3 "/>
             Order

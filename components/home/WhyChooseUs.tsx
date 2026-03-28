@@ -53,8 +53,8 @@ export default function WhyChooseUs() {
               <div className="mb-3 sm:mb-5 p-3 sm:p-4 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform duration-300 group-hover:shadow-black/10">
                 {reason.icon}
               </div>
-              <h3 className="text-[13px] sm:text-xl font-bold text-gray-900 mb-1 sm:mb-3">{reason.title}</h3>
-              <p className="text-[11px] sm:text-sm text-gray-500 leading-relaxed">
+              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-1 sm:mb-3">{reason.title}</h3>
+              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed text-balance">
                 {reason.description}
               </p>
             </div>
