@@ -15,10 +15,10 @@ export default async function FeaturedProducts() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
-          <span className="text-black font-bold tracking-wider uppercase text-sm mb-2 block">
+          <span className="italic text-black font-bold tracking-wider uppercase text-sm mb-2 block">
             Most Wanted
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="italic text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
             Featured Products
           </h2>
           <div className="w-24 h-1 bg-black mx-auto mt-6 rounded-full"></div>

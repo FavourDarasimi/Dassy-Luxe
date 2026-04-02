@@ -1,13 +1,16 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import {FaWhatsapp} from "react-icons/fa"
+import { FaWhatsapp, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 export type Product = {
   _id: string;
   name: string;
   price: number;
-  image: any; 
+  originalPrice?: number;
+  rating?: number;
+  image: any;
   category: { name: string };
+  onSale?: boolean;
 };
 
 const postImageUrl = (image: any) => {
@@ -15,10 +18,12 @@ const postImageUrl = (image: any) => {
 };
 
 export default function ProductCard({ product }: { product: Product }) {
+  const onSale = product.onSale !== false; // default to showing sale
+
   return (
-    <div className="group bg-white rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-gray-100/80 overflow-hidden flex flex-col hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-1.5 transition-all duration-300 ease-in-out">
+    <div className="group bg-white rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-gray-100/80 overflow-hidden flex flex-col hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 ease-in-out">
       {/* Image */}
-      <div className="relative w-full aspect-[4/3] bg-gray-50 overflow-hidden">
+      <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
         {product.image ? (
           <Image
             src={postImageUrl(product.image) || ""}
@@ -27,53 +32,45 @@ export default function ProductCard({ product }: { product: Product }) {
             className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-400">No image</div>
+          <div className="w-full h-full flex items-center justify-center text-gray-400">
+            No image
+          </div>
         )}
-        
-        {/* In Stock Badge */}
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white/95 backdrop-blur-sm px-1.5 py-0.5 sm:px-3 sm:py-1 flex items-center rounded text-[9px] sm:text-xs font-bold text-emerald-600 tracking-wide uppercase shadow-sm border border-white/50">
-          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-500 mr-1 sm:mr-1.5 animate-pulse"></span>
-          In stock
-        </div>
+
+        {/* Sale Badge */}
+        {onSale && (
+          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white px-2 py-0.5 sm:px-3 sm:py-1 rounded text-[10px] sm:text-xs font-bold  tracking-widest uppercase shadow-sm border border-gray-100">
+            SALE
+          </div>
+        )}
       </div>
-      
+
       {/* Content */}
-      <div className="p-3 sm:p-5 flex flex-col flex-grow">
-        {/* Category Name */}
-        <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 block">
-          {product.category?.name || "Uncategorized"}
-        </span>
-        
-        <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate mb-1">
+      <div className="p-3 sm:p-4 flex flex-col gap-2">
+        {/* Product Name */}
+        <h3 className="font-bold text-gray-600 text-sm sm:text-base tracking-wide uppercase truncate">
           {product.name}
         </h3>
-        
-        <div className="hidden sm:block mb-6">
-          <p className="text-gray-500 text-xs line-clamp-2 min-h-[32px] leading-relaxed">
-            {product.category?.name 
-              ? `Experience ultimate luxury and uncompromised quality with our exclusive ${product.category.name.toLowerCase()} collection.` 
-              : "Experience ultimate luxury and uncompromised quality tailored for your lifestyle."}
-          </p>
-        </div>
-        <div className="sm:hidden mb-2"></div>
-        
-        {/* Price & Order Button Container */}
-        <div className="flex items-center justify-between mt-auto pt-3 sm:pt-4 border-t border-gray-100 gap-1">
-          <span className="font-extrabold text-gray-900 text-sm sm:text-lg truncate">
-            ₦{product.price?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+
+        {/* Price Row */}
+        <div className="flex items-baseline gap-2">
+          <span className="font-bold text-gray-900 text-sm sm:text-base">
+            ₦{product.price?.toLocaleString()}
           </span>
-          
-          {/* Compact WhatsApp Order Button */}
-          <a 
-            href={`https://wa.me/2349027458696?text=${encodeURIComponent(`Hello DassyLuxe! I'm interested in ordering the ${product.name}.`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center px-2 py-1.5 sm:px-4 sm:py-2 bg-[#25D366] hover:bg-[#1ebd5a] text-white text-[11px] sm:text-sm font-bold rounded-md transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 shrink-0"
-          >
-            <FaWhatsapp className="w-6 h-6 mr-3 "/>
-            Order
-          </a>
         </div>
+
+        {/* WhatsApp Order Button */}
+        <a
+          href={`https://wa.me/2349027458696?text=${encodeURIComponent(
+            `Hello DassyLuxe! I'm interested in ordering the ${product.name}.`,
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-1 flex items-center justify-center gap-2 w-full py-2 sm:py-2.5 bg-[#25D366] hover:bg-[#1ebd5a] text-white text-xs sm:text-sm font-bold rounded-md transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+        >
+          <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
+          Order on WhatsApp
+        </a>
       </div>
     </div>
   );

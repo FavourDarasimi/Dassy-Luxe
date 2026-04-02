@@ -43,7 +43,7 @@ export default function WhyChooseUs() {
     <section className="py-12 sm:py-20 bg-white ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Why Choose DassyLuxe?</h2>
+          <h2 className="italic text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Why Choose DassyLuxe?</h2>
           <div className="w-16 sm:w-20 h-1 bg-black mx-auto mt-3 sm:mt-4 rounded-full"></div>
         </div>
 

@@ -36,10 +36,10 @@ export default function HowItWorks() {
     <section className="py-24 bg-gray-50 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl tracking-tight">
+          <h2 className="italic text-3xl font-extrabold text-gray-900 sm:text-4xl tracking-tight">
             How to Order
           </h2>
-          <p className="mt-4 max-w-2xl text-lg text-gray-500 mx-auto">
+          <p className="italic mt-4 max-w-2xl text-lg text-gray-500 mx-auto">
             We've made shopping seamless and personal. Just three simple steps to your new look.
           </p>
         </div>
