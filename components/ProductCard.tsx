@@ -63,7 +63,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <a
           href={`https://wa.me/2349027458696?text=${encodeURIComponent(
             `Hello DassyLuxe! I'm interested in ordering the ${product.name}.`,
-          )}`}
+        )}`}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-1 flex items-center justify-center gap-2 w-full py-2 sm:py-2.5 bg-[#25D366] hover:bg-[#1ebd5a] text-white text-xs sm:text-sm font-bold rounded-md transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"

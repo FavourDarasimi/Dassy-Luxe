@@ -16,6 +16,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
   const router = useRouter();
   const searchRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchBtnRef = useRef<HTMLButtonElement>(null);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +31,9 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
   // Close search when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+      const outsideOverlay = searchRef.current && !searchRef.current.contains(e.target as Node);
+      const outsideBtn = searchBtnRef.current && !searchBtnRef.current.contains(e.target as Node);
+      if (outsideOverlay && outsideBtn) {
         setIsSearchOpen(false);
         setSearchQuery("");
       }
@@ -110,6 +113,7 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
           <div className="ml-auto flex items-center gap-2">
             {/* Search Icon (all breakpoints) */}
             <button
+              ref={searchBtnRef}
               onClick={() => setIsSearchOpen(!isSearchOpen)}
               className="p-2 text-gray-600 hover:text-black transition-colors rounded-full hover:bg-gray-100"
               aria-label="Search"
@@ -179,11 +183,11 @@ const Navbar = ({ categories = [] }: { categories?: Category[] }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — floats over page content */}
       <div
-        className={`md:hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? "max-h-fit opacity-100 visible" : "max-h-0 opacity-0 invisible"
-        } overflow-hidden bg-white border-t border-gray-100 shadow-lg`}
+        className={`md:hidden absolute left-0 right-0 top-full z-40 transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2 pointer-events-none"
+        } bg-white border-t border-gray-100 shadow-xl`}
         id="mobile-menu"
       >
         <div className="px-4 pt-4 pb-6 space-y-1 flex flex-col items-center">
