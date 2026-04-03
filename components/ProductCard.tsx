@@ -111,7 +111,7 @@ export default function ProductCard({ product }: { product: Product }) {
           href={`https://wa.me/2349027458696?text=${encodeURIComponent(message)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="md:hidden mt-2 flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] active:bg-[#1ebd5a] text-white text-xs font-bold tracking-wider uppercase transition-colors"
+          className="md:hidden mt-2 flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] active:bg-[#1ebd5a] text-white text-xs font-bold tracking-wider uppercase whitespace-nowrap transition-colors"
         >
           <FaWhatsapp className="w-4 h-4" />
           Order on WhatsApp

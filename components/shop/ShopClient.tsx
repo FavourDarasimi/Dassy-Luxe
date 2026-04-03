@@ -195,23 +195,23 @@ export default function ShopClient({ products, allCategories }: Props) {
             </div>
 
             {/* Right: Stats */}
-            <div className="flex items-stretch gap-4 lg:gap-6">
-              <div className="border border-white/10 px-6 py-5 flex flex-col gap-1">
-                <span className="text-3xl font-black text-white tabular-nums">{products.length}</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-[0.2em]">Products</span>
+            <div className="flex items-stretch gap-2 sm:gap-4 lg:gap-6">
+              <div className="border border-white/10 px-3 sm:px-5 py-3 sm:py-5 flex flex-col gap-1 min-w-0">
+                <span className="text-xl sm:text-3xl font-black text-white tabular-nums">{products.length}</span>
+                <span className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-[0.15em] whitespace-nowrap">Products</span>
               </div>
-              <div className="border border-white/10 px-6 py-5 flex flex-col gap-1">
-                <span className="text-3xl font-black text-white tabular-nums">{allCategories.length}</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-[0.2em]">Categories</span>
+              <div className="border border-white/10 px-3 sm:px-5 py-3 sm:py-5 flex flex-col gap-1 min-w-0">
+                <span className="text-xl sm:text-3xl font-black text-white tabular-nums">{allCategories.length}</span>
+                <span className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-[0.15em] whitespace-nowrap">Categories</span>
               </div>
-              <div className="border border-white/10 px-6 py-5 flex flex-col gap-1">
+              <div className="border border-white/10 px-3 sm:px-5 py-3 sm:py-5 flex flex-col gap-1 min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-3xl font-black text-white tabular-nums">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                  <span className="text-xl sm:text-3xl font-black text-white tabular-nums">
                     {products.filter((p) => p.available !== false).length}
                   </span>
                 </div>
-                <span className="text-[10px] text-gray-500 uppercase tracking-[0.2em]">In Stock</span>
+                <span className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-[0.15em] whitespace-nowrap">In Stock</span>
               </div>
             </div>
           </div>

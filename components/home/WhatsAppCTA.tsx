@@ -1,30 +1,58 @@
-import {FaWhatsapp} from "react-icons/fa"
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function WhatsAppCTA() {
-  const whatsappLink = "https://wa.me/2349027458696?text=Hello%20DassyLuxe!%20I'm%20ready%20to%20order.";
+  const whatsappLink =
+    "https://wa.me/2349027458696?text=Hello%20DassyLuxe!%20I'm%20ready%20to%20order.";
 
   return (
-    <section className="my-5 py-16 md:py-24 bg-[#111827] relative overflow-hidden w-[calc(100%-2rem)] xl:w-[1500px] mx-auto rounded-3xl">
-      {/* Decorative patterns */}
-      
+    <section className="my-6 sm:my-10 mx-4 xl:mx-auto xl:max-w-[1500px]">
+      <div className="relative bg-[#0a0a0a] overflow-hidden px-6 sm:px-16 py-16 sm:py-24">
+        {/* Subtle grid texture */}
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+        {/* Right-side glow */}
+        <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#25D366]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-          Ready to order?
-        </h2>
-        <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
-          Don't wait. Chat with our styling experts right now on WhatsApp and let's get your premium package dispatched immediately.
-        </p>
-        
-        <a 
-          href={whatsappLink} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-6 py-4 sm:px-10 sm:py-5 border border-transparent text-base sm:text-lg font-bold rounded-full text-white bg-[#25D366] hover:bg-[#1ebd5a] transform hover:-translate-y-1 transition-all duration-300 whitespace-nowrap"
-        >
-          <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 shrink-0"/>
-          Chat with us on WhatsApp
-        </a>
+        <div className="relative z-10 max-w-2xl mx-auto text-center">
+          {/* Eyebrow */}
+          <p className="text-[10px] font-bold text-gray-500 tracking-[0.3em] uppercase mb-6">
+            Ready to Shop?
+          </p>
+
+          {/* Headline */}
+          <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-5">
+            Let's Get You
+            <br />
+            <span className="text-[#25D366]">Styled.</span>
+          </h2>
+
+          {/* Body */}
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-10 max-w-md mx-auto">
+            Chat with our styling experts on WhatsApp. We'll help you find the perfect piece and dispatch it fast.
+          </p>
+
+          {/* CTA */}
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#25D366] text-white text-sm font-bold uppercase tracking-[0.18em] hover:bg-[#1ebd5a] active:scale-95 transition-all duration-200 shadow-[0_0_40px_rgba(37,211,102,0.25)] whitespace-nowrap"
+          >
+            <FaWhatsapp className="w-5 h-5 flex-shrink-0" />
+            Chat with us on WhatsApp
+          </a>
+
+          {/* Trust micro-copy */}
+          <p className="text-gray-600 text-[11px] mt-5 tracking-wider uppercase">
+            Fast response · Secure ordering · Nationwide delivery
+          </p>
+        </div>
       </div>
     </section>
   );
