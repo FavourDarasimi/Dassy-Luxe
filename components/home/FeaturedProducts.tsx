@@ -1,7 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import ProductCard, { Product } from "@/components/ProductCard";
 
-const FEATURED_PRODUCTS_QUERY = `*[ _type == "product" && available == true ]|order(publishedAt desc)[0...8]{_id, name, price, image, category -> {name}}`;
+const FEATURED_PRODUCTS_QUERY = `*[ _type == "product" && available == true ]|order(publishedAt desc)[0...8]{_id, name, price, image, category -> {name},sku}`;
 const options = { next: { revalidate: 30 } };
 
 export default async function FeaturedProducts() {

@@ -1,77 +1,122 @@
+"use client";
+
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { FaWhatsapp, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 export type Product = {
   _id: string;
   name: string;
   price: number;
-  originalPrice?: number;
   rating?: number;
   image: any;
   category: { name: string };
-  onSale?: boolean;
-};
-
-const postImageUrl = (image: any) => {
-  return image ? urlFor(image)?.url() : null;
+  sku: string;
+  available: boolean;
 };
 
 export default function ProductCard({ product }: { product: Product }) {
-  const onSale = product.onSale !== false; // default to showing sale
+  const imageUrl = product.image ? urlFor(product.image)?.url() : null;
+  const isAvailable = product.available !== false;
+
+  const message = `Hello DassyLuxe, I want to order:\n\nProduct: ${product.name}\nPrice: ₦${product.price?.toLocaleString()}\nProduct ID: ${product.sku}`;
 
   return (
-    <div className="group bg-white rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-gray-100/80 overflow-hidden flex flex-col hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 ease-in-out">
-      {/* Image */}
-      <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
-        {product.image ? (
+    <article className="group flex flex-col bg-white">
+      {/* ── Image container ── */}
+      <div className="relative w-full aspect-[3/4] bg-[#f5f5f5] overflow-hidden">
+        {imageUrl ? (
           <Image
-            src={postImageUrl(product.image) || ""}
+            src={imageUrl}
             alt={product.name}
             fill
-            className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-400">
-            No image
+          <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-gray-300">
+            <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span className="text-xs tracking-widest uppercase">No image</span>
           </div>
         )}
 
-        {/* Sale Badge */}
-        {onSale && (
-          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white px-2 py-0.5 sm:px-3 sm:py-1 rounded text-[10px] sm:text-xs font-bold  tracking-widest uppercase shadow-sm border border-gray-100">
-            SALE
-          </div>
-        )}
+        {/* Badges */}
+        <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+          {!isAvailable && (
+            <span className="px-2 py-0.5 bg-gray-900 text-white text-[10px] font-bold tracking-widest uppercase">
+              SOLD OUT
+            </span>
+          )}
+          {isAvailable && (
+            <span className="px-2 py-0.5 bg-white text-gray-900 text-[10px] font-bold tracking-widest uppercase border border-gray-200 shadow-sm">
+              NEW
+            </span>
+          )}
+        </div>
+
+        {/* Hover overlay — desktop only */}
+        <div className="hidden md:flex absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-400 ease-out flex-col items-center justify-end pb-5 gap-2.5 px-4">
+          <a
+            href={`https://wa.me/2349027458696?text=${encodeURIComponent(message)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="w-full flex items-center justify-center gap-2 py-2.5 bg-[#25D366] text-white text-xs font-bold tracking-wider uppercase translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-75 hover:bg-[#1ebd5a]"
+          >
+            <FaWhatsapp className="w-4 h-4" />
+            Order on WhatsApp
+          </a>
+          <button
+            className="w-full flex items-center justify-center py-2.5 bg-white text-gray-900 text-xs font-bold tracking-wider uppercase translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-100 hover:bg-gray-900 hover:text-white"
+          >
+            View Details
+          </button>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="p-3 sm:p-4 flex flex-col gap-2">
-        {/* Product Name */}
-        <h3 className="font-bold text-gray-600 text-sm sm:text-base tracking-wide uppercase truncate">
+      {/* ── Info ── */}
+      <div className="pt-3 pb-4 px-0.5 flex flex-col gap-1">
+        {/* Category */}
+        {product.category?.name && (
+          <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-[0.18em]">
+            {product.category.name}
+          </span>
+        )}
+
+        {/* Name */}
+        <h3 className="text-sm sm:text-[13px] font-bold text-gray-900 uppercase tracking-wide leading-snug line-clamp-2">
           {product.name}
         </h3>
 
-        {/* Price Row */}
-        <div className="flex items-baseline gap-2">
-          <span className="font-bold text-gray-900 text-sm sm:text-base">
+        {/* Price + availability row */}
+        <div className="flex items-center justify-between mt-0.5">
+          <span className="text-sm sm:text-base font-extrabold text-gray-900">
             ₦{product.price?.toLocaleString()}
+          </span>
+          <span
+            className={`text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full ${
+              isAvailable
+                ? "text-emerald-700 bg-emerald-50"
+                : "text-gray-400 bg-gray-100"
+            }`}
+          >
+            {isAvailable ? "In Stock" : "Out of Stock"}
           </span>
         </div>
 
-        {/* WhatsApp Order Button */}
+        {/* Mobile-only WhatsApp button — always visible, no hover needed */}
         <a
-          href={`https://wa.me/2349027458696?text=${encodeURIComponent(
-            `Hello DassyLuxe! I'm interested in ordering the ${product.name}.`,
-        )}`}
+          href={`https://wa.me/2349027458696?text=${encodeURIComponent(message)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-1 flex items-center justify-center gap-2 w-full py-2 sm:py-2.5 bg-[#25D366] hover:bg-[#1ebd5a] text-white text-xs sm:text-sm font-bold rounded-md transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+          className="md:hidden mt-2 flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] active:bg-[#1ebd5a] text-white text-xs font-bold tracking-wider uppercase transition-colors"
         >
-          <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
+          <FaWhatsapp className="w-4 h-4" />
           Order on WhatsApp
         </a>
       </div>
-    </div>
+    </article>
   );
 }

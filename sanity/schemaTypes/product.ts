@@ -42,5 +42,18 @@ export const product = defineType({
       type: "boolean",
       initialValue: true,
     }),
+    
+    defineField( {
+      name: 'sku',
+      type: 'string',
+      title: 'SKU / Product ID',
+      readOnly: true,
+      initialValue: ({ document }) => {
+        const name = document?.name || 'ITEM';
+        const prefix = name.substring(0, 3).toUpperCase();
+        const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+        return `${prefix}-${random}`;
+      }
+    })
   ],
 });
